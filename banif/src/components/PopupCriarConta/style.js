@@ -12,11 +12,9 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 88vh;
-  max-height: 88vh;
+  height: 100vh;
   z-index: 15;
   opacity: 1;
-  margin-top: 12vh;
   transition: opacity 0.25s ease;
 
   &.fade-out {
