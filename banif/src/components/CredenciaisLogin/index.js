@@ -22,19 +22,16 @@ export default function CredenciaisLogin() {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    // 🔧 VERIFICA SE É GERENTE
     if (email === "gerente@banifbank.com" && senha === "gerente123") {
       navigate("/Home/Gerente");
       return;
     }
 
-    // 🔧 BUSCA CLIENTE PELO EMAIL E SENHA
     const cliente = clientes.find(
       (cliente) => cliente.email === email && cliente.senha === senha
     );
 
     if (cliente) {
-      // 🔧 NAVEGA PARA HOME COM EMAIL NA URL (encode para caracteres especiais)
       navigate(`/Home/${encodeURIComponent(cliente.email)}`);
     } else {
       alert("Email ou senha incorretos!");
