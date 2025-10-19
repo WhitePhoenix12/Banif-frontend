@@ -18,6 +18,7 @@ export const Container = styled.div`
   opacity: 1;
   margin-top: 12vh;
   transition: opacity 0.25s ease;
+
   &.fade-out {
     opacity: 0;
   }
@@ -52,28 +53,6 @@ export const Label = styled.label`
   font-size: calc(calc(4vw + 0.5vh) / 2);
   font-weight: 500;
   align-self: flex-start;
-`;
-
-export const Input = styled.input`
-  background-color: #f8f9fa;
-  width: 80%;
-  height: calc(calc(3vh + 4vw) / 2);
-  border: none;
-  border-radius: 50px;
-  font-size: calc(calc(2vw + 0.5vh) / 2);
-  color: #ffffff;
-  padding: 8px 15px;
-  outline: none;
-  transition: 0.3s;
-
-  &::placeholder {
-    color: #6c757d;
-  }
-
-  @media (max-width: 800px) {
-    width: 90%;
-    font-size: calc(calc(3vw + 0.5vh) / 2);
-  }
 `;
 
 export const BotaoFechar = styled.button`
