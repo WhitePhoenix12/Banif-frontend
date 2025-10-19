@@ -1,5 +1,5 @@
-
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   Titulo,
@@ -11,15 +11,35 @@ import {
   SenhaEsquecida,
   ContainerInput,
 } from "./style";
-
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { clientes } from "../../data/clientes";
 
 export default function CredenciaisLogin() {
-
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [salvar, setSalvar] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    // 🔧 VERIFICA SE É GERENTE
+    if (email === "gerente@banifbank.com" && senha === "gerente123") {
+      navigate("/Home/Gerente");
+      return;
+    }
+
+    // 🔧 BUSCA CLIENTE PELO EMAIL E SENHA
+    const cliente = clientes.find(
+      (cliente) => cliente.email === email && cliente.senha === senha
+    );
+
+    if (cliente) {
+      // 🔧 NAVEGA PARA HOME COM EMAIL NA URL (encode para caracteres especiais)
+      navigate(`/Home/${encodeURIComponent(cliente.email)}`);
+    } else {
+      alert("Email ou senha incorretos!");
+    }
+  };
 
   return (
     <Container>
@@ -48,7 +68,7 @@ export default function CredenciaisLogin() {
           {mostrarSenha ? <FaEyeSlash /> : <FaEye />}
         </IconeOlho>
         <SenhaEsquecida>Esqueceu sua Senha?</SenhaEsquecida>
-        <BotaoLogar>Realizar Login</BotaoLogar>
+        <BotaoLogar onClick={handleLogin}>Realizar Login</BotaoLogar>
       </SubContainer>
     </Container>
   );
