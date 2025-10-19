@@ -8,8 +8,7 @@ const fadeIn = keyframes`
 export const Container = styled.div`
   display: flex;
   position: fixed;
-  background-color: rgba(248, 249, 250, 0.2);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.7);
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -17,8 +16,8 @@ export const Container = styled.div`
   max-height: 88vh;
   z-index: 15;
   opacity: 1;
+  margin-top: 12vh;
   transition: opacity 0.25s ease;
-
   &.fade-out {
     opacity: 0;
   }
@@ -71,11 +70,6 @@ export const Input = styled.input`
     color: #6c757d;
   }
 
-  &:focus {
-    background-color: #6fb9f0;
-    box-shadow: 0 0 5px #ffffff;
-  }
-
   @media (max-width: 800px) {
     width: 90%;
     font-size: calc(calc(3vw + 0.5vh) / 2);
@@ -117,4 +111,3 @@ export const BotaoEnviar = styled.button`
     transform: scale(0.98);
   }
 `;
-

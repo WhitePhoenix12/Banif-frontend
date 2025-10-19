@@ -1,5 +1,5 @@
 import { FiX } from "react-icons/fi";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import {
   Container,
   Popup,
@@ -14,6 +14,11 @@ import PopupMensagem from "../PopupMensagem";
 export default function PopupCriarConta({ fechar }) {
   const [fechando, setFechando] = useState(false);
   const [mensagem, setMensagem] = useState(null);
+
+  // função estável (não recria a cada renderização)
+  const fecharMensagem = useCallback(() => {
+    setMensagem(null);
+  }, []);
 
   const handleFechar = () => {
     setFechando(true);
@@ -53,13 +58,6 @@ export default function PopupCriarConta({ fechar }) {
               pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
               required
             />
-            <Label>Conta</Label>
-            <Input
-              placeholder="123456-7"
-              name="conta"
-              pattern="\d{6}\-\d{1}"
-              required
-            />
             <Label>Agência</Label>
             <Input
               placeholder="1234-5"
@@ -67,6 +65,15 @@ export default function PopupCriarConta({ fechar }) {
               pattern="\d{4}\-\d{1}"
               required
             />
+            <Label>Conta</Label>
+            <Input
+              placeholder="123456-7"
+              name="conta"
+              pattern="\d{6}\-\d{1}"
+              required
+            />
+            <Label>Saldo</Label>
+            <Input name="saldo" type="number" step="0.01" min="0" />
 
             <BotaoEnviar type="submit">Enviar</BotaoEnviar>
           </Formulario>
@@ -77,7 +84,7 @@ export default function PopupCriarConta({ fechar }) {
         <PopupMensagem
           mensagem={mensagem.texto}
           tipo={mensagem.tipo}
-          fechar={() => setMensagem(null)}
+          fechar={fecharMensagem} // ✅ agora é estável
         />
       )}
     </>
