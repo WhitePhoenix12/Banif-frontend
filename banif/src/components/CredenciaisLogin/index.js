@@ -20,7 +20,10 @@ export default function CredenciaisLogin() {
   const [mostrarSenha, setMostrarSenha] = useState(false);
   const [salvar, setSalvar] = useState(false);
   const navigate = useNavigate();
-
+  const cliente = clientes.find((c) => c.email === email && c.senha === senha);
+  if (cliente) {
+    navigate(`/Home/${encodeURIComponent(cliente.email)}`); // 🔧 Isso converte @ para %40
+  }
   const handleLogin = () => {
     if (email === "gerente@banifbank.com" && senha === "gerente123") {
       navigate("/Home/Gerente");

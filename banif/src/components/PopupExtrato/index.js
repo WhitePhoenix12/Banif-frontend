@@ -14,13 +14,38 @@ import {
 
 export default function PopupExtrato({ cliente, onClose }) {
   const [paginaAtual, setPaginaAtual] = useState(0);
-  const porPagina = 10;
+  const porPagina = 7;
   const extrato = cliente.extrato;
   const totalPaginas = Math.ceil(extrato.length / porPagina);
 
   const start = paginaAtual * porPagina;
   const end = start + porPagina;
   const transferenciasPagina = extrato.slice(start, end);
+
+  // 🔧 FUNÇÃO PARA DETERMINAR SE O VALOR É POSITIVO OU NEGATIVO
+  const getTipoValor = (transacao) => {
+    // Se o valor for negativo, é saída (vermelho)
+    if (transacao.valor < 0) {
+      return "negativo";
+    }
+    // Se o valor for positivo, é entrada (verde)
+    else if (transacao.valor > 0) {
+      return "positivo";
+    }
+    // Valor zero (pode ser cinza ou outra cor)
+    return "neutro";
+  };
+
+  // 🔧 FORMATA O VALOR COM SINAL
+  const formatarValor = (valor) => {
+    const valorAbsoluto = Math.abs(valor);
+    const sinal = valor < 0 ? "- " : valor > 0 ? "+ " : "";
+
+    return `${sinal}${valorAbsoluto.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    })}`;
+  };
 
   return (
     <Overlay>
@@ -40,14 +65,9 @@ export default function PopupExtrato({ cliente, onClose }) {
 
         <Body>
           {transferenciasPagina.map((trans, idx) => (
-            <Transferencia key={idx} tipo={trans.tipo}>
+            <Transferencia key={idx} tipo={getTipoValor(trans)}>
               <span>{trans.descricao}</span>
-              <span>
-                {trans.valor.toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                })}
-              </span>
+              <span>{formatarValor(trans.valor)}</span>
             </Transferencia>
           ))}
         </Body>

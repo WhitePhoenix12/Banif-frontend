@@ -28,6 +28,8 @@ export default function CabeçalhoCliente({ cliente }) {
           {/* <SidebarButton onClick={() => setPopupClienteAberto(true)}>
             Cadastrar Cliente
           </SidebarButton> */}
+          <SidebarButton>Realizar Transferência</SidebarButton>
+          <SidebarButton>Realizar Aplicação</SidebarButton>
         </Sidebar>
       </Header>
 
