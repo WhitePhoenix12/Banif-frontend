@@ -37,7 +37,7 @@ export const PopupContainer = styled.div`
 export const Header = styled.div`
   display: flex;
   align-itens: center;
-  background: #002f6c;
+  background: linear-gradient(135deg, #002f6c, #0047ab);
   color: #fff;
   display: flex;
   justify-content: space-between;
@@ -54,7 +54,7 @@ export const Saldo = styled.div`
   padding: 1rem 1.5rem;
   font-size: 1.2rem;
   font-weight: bold;
-  background: #f1f1f1;
+  background: rgba(0, 71, 171, 0.45);
 `;
 
 export const Body = styled.div`
@@ -67,6 +67,8 @@ export const Transferencia = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
   color: ${({ tipo }) => (tipo === "saida" ? "#dc3545" : "#28a745")};
   transition: color 0.3s ease;
 `;
@@ -82,7 +84,7 @@ export const BotaoPagina = styled.button`
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 0.5rem;
-  background: #002f6c;
+  background: linear-gradient(135deg, #002f6c, #0047ab);
   color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;

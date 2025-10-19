@@ -47,7 +47,9 @@ export const ListaContainer = styled.div`
 export const NomeCliente = styled.h2`
   font-size: 1.6rem;
   font-weight: bold;
-  color: #002f6c;
+  background: linear-gradient(45deg, #002f6c, #0047ab);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;
 
 export const ContainerBotoes = styled.div`
