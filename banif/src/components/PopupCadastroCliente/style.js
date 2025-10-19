@@ -28,7 +28,7 @@ export const Popup = styled.div`
   flex-flow: column;
   background: linear-gradient(45deg, #002f6c, #0047ab);
   width: calc(calc(60vh + 50vw) / 2);
-  height: calc(calc(60vh + 60vw) / 2);
+  height: calc(calc(65vh + 60vw) / 2);
   max-height: 75vh;
   border-radius: 15px;
   justify-content: center;
@@ -42,37 +42,15 @@ export const Formulario = styled.form`
   display: flex;
   flex-flow: column;
   align-items: center;
-  gap: 10px;
+  gap: 1vh;
   width: 100%;
 `;
 
 export const Label = styled.label`
   color: #f8f9fa;
-  font-size: calc(calc(4vw + 0.5vh) / 2);
+  font-size: calc(calc(3.5vw + 0.5vh) / 2);
   font-weight: 500;
   align-self: flex-start;
-`;
-
-export const Input = styled.input`
-  background-color: #f8f9fa;
-  width: 80%;
-  height: calc(calc(3vh + 4vw) / 2);
-  border: none;
-  border-radius: 50px;
-  font-size: calc(calc(2vw + 0.5vh) / 2);
-  color: #ffffff;
-  padding: 8px 15px;
-  outline: none;
-  transition: 0.3s;
-
-  &::placeholder {
-    color: #6c757d;
-  }
-
-  @media (max-width: 800px) {
-    width: 90%;
-    font-size: calc(calc(3vw + 0.5vh) / 2);
-  }
 `;
 
 export const LinhaEndereco = styled.div`
@@ -81,7 +59,6 @@ export const LinhaEndereco = styled.div`
   width: 80%;
   gap: 10px;
 
-  /* 🔧 ATUALIZADO para funcionar com InputSeguro */
   & > div {
     width: 100%;
   }

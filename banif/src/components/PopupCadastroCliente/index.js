@@ -1,5 +1,5 @@
 import { FiX } from "react-icons/fi";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import {
   Container,
   Popup,
@@ -19,6 +19,7 @@ export default function PopupCadastroCliente({ fechar }) {
     nome: "",
     cpf: "",
     email: "",
+    senha: "",
     cidade: "",
     estado: "",
     rua: "",
@@ -38,10 +39,22 @@ export default function PopupCadastroCliente({ fechar }) {
 
   const handleInputChange = useCallback((e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+
+    if (name === "senha") {
+      // 🔧 APENAS NÚMEROS E LIMITE DE 8 DÍGITOS
+      const apenasNumeros = value.replace(/\D/g, "");
+      const senhaLimitada = apenasNumeros.slice(0, 8);
+
+      setFormData((prev) => ({
+        ...prev,
+        [name]: senhaLimitada,
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   }, []);
 
   // 🔧 FUNÇÃO DE VALIDAÇÃO
@@ -69,6 +82,15 @@ export default function PopupCadastroCliente({ fechar }) {
       erros.push("Email deve estar no formato email@exemplo.com");
     }
 
+    // 🔧 VALIDAÇÃO DA SENHA - 8 NÚMEROS
+    if (!formData.senha.trim()) {
+      erros.push("Senha é obrigatória");
+    } else if (formData.senha.length !== 8) {
+      erros.push("Senha deve ter exatamente 8 números");
+    } else if (!/^\d{8}$/.test(formData.senha)) {
+      erros.push("Senha deve conter apenas números");
+    }
+
     // Validação dos campos de endereço
     if (!formData.cidade.trim()) erros.push("Cidade é obrigatória");
     if (!formData.estado.trim()) erros.push("Estado é obrigatório");
@@ -86,7 +108,6 @@ export default function PopupCadastroCliente({ fechar }) {
       const erros = validarFormulario();
 
       if (erros.length > 0) {
-        // 🔧 FORMATA AS MENSAGENS UMA EM BAIXO DA OUTRA
         const mensagemErro = erros.map((erro) => `• ${erro}`).join("\n");
 
         setMensagem({
@@ -147,6 +168,14 @@ export default function PopupCadastroCliente({ fechar }) {
               placeholder="email@email.com"
               name="email"
               value={formData.email}
+              onChange={handleInputChange}
+            />
+
+            <Label>Senha</Label>
+            <InputSeguro
+              placeholder="Digite 8 números"
+              name="senha"
+              value={formData.senha}
               onChange={handleInputChange}
             />
 

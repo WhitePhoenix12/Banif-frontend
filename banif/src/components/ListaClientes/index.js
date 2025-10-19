@@ -63,6 +63,9 @@ const ListaClientes = ({ clientes }) => {
                     <InfoCliente>
                       <strong>Conta:</strong> {cliente.conta}
                     </InfoCliente>
+                    <InfoCliente>
+                      <strong>Senha</strong> {cliente.senha}
+                    </InfoCliente>
                   </>
                 )}
               </div>
@@ -99,6 +102,7 @@ export default function Clientes() {
       agencia: "0001-0",
       conta: "123456-7",
       saldo: 3500,
+      senha: "12345678",
       endereco: {
         rua: "Rua das Flores",
         numero: 120,
@@ -126,6 +130,7 @@ export default function Clientes() {
       agencia: "0001-0",
       conta: "654321-0",
       saldo: 4200,
+      senha: "87654321",
       endereco: {
         rua: "Avenida Central",
         numero: 555,
@@ -153,6 +158,7 @@ export default function Clientes() {
       agencia: "0002-0",
       conta: "987654-3",
       saldo: 2800,
+      senha: "11223344",
       endereco: {
         rua: "Rua das Palmeiras",
         numero: 45,
@@ -173,6 +179,7 @@ export default function Clientes() {
       agencia: "0003-0",
       conta: "112233-4",
       saldo: 2000,
+      senha: "55667788",
       endereco: {
         rua: "Rua dos Girassóis",
         numero: 88,
@@ -192,6 +199,7 @@ export default function Clientes() {
       agencia: "0004-0",
       conta: "556677-8",
       saldo: 2500,
+      senha: "99887766",
       endereco: {
         rua: "Travessa do Sol",
         numero: 22,
@@ -211,6 +219,7 @@ export default function Clientes() {
       agencia: "0002-0",
       conta: "223344-5",
       saldo: 3300,
+      senha: "44332211",
       endereco: {
         rua: "Rua Dom Pedro II",
         numero: 301,
@@ -231,6 +240,7 @@ export default function Clientes() {
       agencia: "0005-0",
       conta: "998877-0",
       saldo: 2900,
+      senha: "77777777",
       endereco: {
         rua: "Rua São José",
         numero: 145,
@@ -250,6 +260,7 @@ export default function Clientes() {
       agencia: "0001-0",
       conta: "445566-1",
       saldo: 4100,
+      senha: "66666666",
       endereco: {
         rua: "Avenida das Américas",
         numero: 7777,
@@ -269,6 +280,7 @@ export default function Clientes() {
       agencia: "0003-0",
       conta: "334455-2",
       saldo: 3800,
+      senha: "55555555",
       endereco: {
         rua: "Rua XV de Novembro",
         numero: 89,
@@ -296,6 +308,7 @@ export default function Clientes() {
       agencia: "0004-0",
       conta: "667788-9",
       saldo: 3600,
+      senha: "44444444",
       endereco: {
         rua: "Rua Bela Vista",
         numero: 210,
