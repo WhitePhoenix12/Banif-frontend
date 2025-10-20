@@ -12,23 +12,24 @@ import {
   Header,
   Body,
   Transferencia,
-  Footer,
-  BotaoPagina,
   Titulo,
   Saldo,
   BotaoExtrato,
   ConteudoExtrato,
   ContainerSaldo,
+  ContainerSaldoAplicacoes,
   IconeOlho,
+  LinhaSaldoAplicacoes,
+  Coluna,
 } from "./style";
 
 export default function Extrato({ cliente }) {
   const [paginaAtual, setPaginaAtual] = useState(0);
   const [extratoAberto, setExtratoAberto] = useState(false);
   const [saldoVisivel, setSaldoVisivel] = useState(false);
+  const [aplicacoesVisivel, setAplicacoesVisivel] = useState(false);
   const porPagina = 10;
   const extrato = cliente.extrato;
-  const totalPaginas = Math.ceil(extrato.length / porPagina);
 
   const start = paginaAtual * porPagina;
   const end = start + porPagina;
@@ -42,10 +43,28 @@ export default function Extrato({ cliente }) {
     setSaldoVisivel(!saldoVisivel);
   };
 
+  const toggleAplicacoesVisivel = () => {
+    setAplicacoesVisivel(!aplicacoesVisivel);
+  };
+
   // 🔧 FORMATA O SALDO (VISÍVEL OU OCULTO)
   const formatarSaldo = () => {
     if (saldoVisivel) {
       return cliente.saldo.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      });
+    } else {
+      return "••••••••";
+    }
+  };
+
+  // 🔧 FORMATA AS APLICAÇÕES (VISÍVEL OU OCULTO)
+  const formatarAplicacoes = () => {
+    if (aplicacoesVisivel) {
+      // Valor fictício para aplicações - você pode substituir por dados reais
+      const aplicacoes = cliente.aplicacoes || 1500;
+      return aplicacoes.toLocaleString("pt-BR", {
         style: "currency",
         currency: "BRL",
       });
@@ -83,15 +102,33 @@ export default function Extrato({ cliente }) {
     <Container>
       <PopupContainer>
         <Header>
-          <Titulo>Extrato</Titulo>
+          <Titulo>Olá, {cliente?.nome || "Cliente"}!</Titulo>
         </Header>
 
-        <ContainerSaldo>
-          <Saldo>Saldo: {formatarSaldo()}</Saldo>
-          <IconeOlho onClick={toggleSaldoVisivel}>
-            {saldoVisivel ? <FiEyeOff size={20} /> : <FiEye size={20} />}
-          </IconeOlho>
-        </ContainerSaldo>
+        {/* 🔧 LINHA COM SALDO E APLICAÇÕES */}
+        <LinhaSaldoAplicacoes>
+          <Coluna>
+            <ContainerSaldo>
+              <Saldo>Saldo: {formatarSaldo()}</Saldo>
+              <IconeOlho onClick={toggleSaldoVisivel}>
+                {saldoVisivel ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+              </IconeOlho>
+            </ContainerSaldo>
+          </Coluna>
+
+          <Coluna>
+            <ContainerSaldoAplicacoes>
+              <Saldo>Aplicações: {formatarAplicacoes()}</Saldo>
+              <IconeOlho onClick={toggleAplicacoesVisivel}>
+                {aplicacoesVisivel ? (
+                  <FiEyeOff size={20} />
+                ) : (
+                  <FiEye size={20} />
+                )}
+              </IconeOlho>
+            </ContainerSaldoAplicacoes>
+          </Coluna>
+        </LinhaSaldoAplicacoes>
 
         <BotaoExtrato onClick={toggleExtrato} aberto={extratoAberto}>
           <span>Extrato</span>

@@ -75,19 +75,46 @@ export const Titulo = styled.p`
   text-shadow: 2px 2px 2px rgba(255, 255, 255, 0.45);
 `;
 
+// 🔧 LINHA PARA SALDO E APLICAÇÕES
+export const LinhaSaldoAplicacoes = styled.div`
+  display: flex;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: rgba(0, 71, 171, 0.1);
+  border-bottom: 2px solid rgba(0, 71, 171, 0.2);
+`;
+
+// 🔧 COLUNA INDIVIDUAL
+export const Coluna = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
 // 🔧 CONTAINER DO SALDO COM ÍCONE
 export const ContainerSaldo = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem;
-  background: rgba(0, 71, 171, 0.1);
-  border-bottom: 2px solid rgba(0, 71, 171, 0.2);
-  position: relative;
+  padding: 1rem;
+  background: rgba(0, 71, 171, 0.08);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 71, 171, 0.2);
+`;
+
+// 🔧 CONTAINER DAS APLICAÇÕES COM ÍCONE
+export const ContainerSaldoAplicacoes = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: rgba(0, 71, 171, 0.08);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(46, 125, 50, 0.2);
 `;
 
 export const Saldo = styled.div`
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   font-weight: bold;
   color: #002f6c;
   letter-spacing: ${(props) => (props.oculto ? "2px" : "normal")};
@@ -186,41 +213,5 @@ export const Transferencia = styled.div`
 
   &:hover {
     background: rgba(0, 0, 0, 0.05);
-  }
-`;
-
-export const Footer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  gap: 1rem;
-  background: rgba(0, 0, 0, 0.03);
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-
-  span {
-    font-weight: 600;
-    color: #002f6c;
-  }
-`;
-
-export const BotaoPagina = styled.button`
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 0.5rem;
-  background: linear-gradient(135deg, #002f6c, #0047ab);
-  color: #fff;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-weight: 600;
-
-  &:disabled {
-    background: #aaa;
-    cursor: default;
-  }
-
-  &:hover:not(:disabled) {
-    filter: brightness(1.2);
-    transform: translateY(-1px);
   }
 `;
